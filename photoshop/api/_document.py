@@ -143,7 +143,7 @@ class Document(Photoshop):
             return Path(self.app.fullName)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                f'alert ("Please save your Document first!","{self.name}")'
             )
 
     @property
@@ -219,7 +219,7 @@ class Document(Photoshop):
             return Path(self.app.path)
         except COMError:
             self.eval_javascript(
-                'alert ("Please save your Document first!",' '"{}")'.format(self.name),
+                f'alert ("Please save your Document first!","{self.name}")'
             )
 
     @path.setter

@@ -286,10 +286,7 @@ class Application(Photoshop):
         return True
 
     def doForcedProgress(self, title, javascript):
-        script = "app.doForcedProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doForcedProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -303,31 +300,20 @@ class Application(Photoshop):
             javascript (str): JavaScriptString to execute.
 
         """
-        script = "app.doProgress('{}', '{}')".format(
-            title,
-            javascript,
-        )
+        script = f"app.doProgress('{title}', '{javascript}')"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSegmentTask(self, segmentLength, done, total, javascript):
-        script = "app.doProgressSegmentTask({}, {}, {}, '{}');".format(
-            segmentLength,
-            done,
-            total,
-            javascript,
-        )
+        script = f"app.doProgressSegmentTask({segmentLength}, {done}, {total}, '{javascript}');"
+
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
 
     def doProgressSubTask(self, index, limit, javascript):
-        script = "app.doProgressSubTask({}, {}, '{}');".format(
-            index,
-            limit,
-            javascript,
-        )
+        script = f"app.doProgressSubTask({index}, {limit}, '{javascript}');"
         self.eval_javascript(script)
         # Ensure the script execute success.
         time.sleep(1)
@@ -378,9 +364,7 @@ class Application(Photoshop):
         as_smart_object: bool = False,
     ) -> Document:
         document = self.app.open(document_file_path, document_type, as_smart_object)
-        if not as_smart_object:
-            return Document(document)
-        return document
+        return document if as_smart_object else Document(document)
 
     def load(self, document_file_path):
         """Loads a support document."""

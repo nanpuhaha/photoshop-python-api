@@ -6,13 +6,14 @@ References:
 
 """
 
+
 # Import local modules
 import photoshop.api as ps
 
 
 app = ps.Application()
 
-if len(list((i, x) for i, x in enumerate(app.documents, 1))) > 0:
+if list(enumerate(app.documents, 1)):
     if not app.activeDocument.activeLayer.isBackgroundLayer:
         psPixels = 1
         start_ruler_units = app.Preferences.RulerUnits

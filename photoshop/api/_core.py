@@ -172,7 +172,5 @@ class Photoshop(object):
         return ".".join(names)
 
     def eval_javascript(self, javascript, Arguments=None, ExecutionMode=None):
-        executor = self.app
-        if self._has_parent:
-            executor = self.adobe
+        executor = self.adobe if self._has_parent else self.app
         return executor.doJavaScript(javascript, Arguments, ExecutionMode)

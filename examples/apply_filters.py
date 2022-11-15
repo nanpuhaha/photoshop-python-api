@@ -3,6 +3,7 @@ References:
     https://github.com/lohriialo/photoshop-scripting-python/blob/master/ApplyFilters.py
 
 """
+
 # Import built-in modules
 import os
 
@@ -29,10 +30,8 @@ if start_ruler_units is not psPixels:
 
 fileName = PSD_FILE["layer_comps.psd"]
 docRef = app.open(fileName)
-nLayerSets = len(list((i, x) for i, x in enumerate(docRef.layerSets))) - 1
-nArtLayers = len(
-    list((i, x) for i, x in enumerate(docRef.layerSets[nLayerSets].artLayers)),
-)
+nLayerSets = len(list(enumerate(docRef.layerSets))) - 1
+nArtLayers = len(list(enumerate(docRef.layerSets[nLayerSets].artLayers)))
 
 active_layer = docRef.activeLayer = docRef.layerSets[nLayerSets].artLayers[nArtLayers]
 sel_area = ((0, 212), (300, 212), (300, 300), (0, 300))
