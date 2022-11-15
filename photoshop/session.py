@@ -279,9 +279,7 @@ class Session:
     @property
     def active_document(self):
         try:
-            if not self._active_document:
-                return self.app.activeDocument
-            return self._active_document
+            return self._active_document or self.app.activeDocument
         except errors.PhotoshopPythonAPICOMError:
             raise errors.PhotoshopPythonAPIError("No active document " "available.")
 

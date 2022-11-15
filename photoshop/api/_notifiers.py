@@ -23,14 +23,13 @@ class Notifiers(Photoshop):
 
     @property
     def _notifiers(self) -> list:
-        return [n for n in self.app]
+        return list(self.app)
 
     def __len__(self):
         return self.length
 
     def __iter__(self):
-        for app in self.app:
-            yield app
+        yield from self.app
 
     def __getitem__(self, item):
         return self._notifiers[item]
